@@ -12,8 +12,10 @@ const router = express.Router()
 router.route('/api/shops/by/:vendorId')
   .post(authCtrl.requireSignin, authCtrl.hasAuthorization, vendorCtrl.isVendor, shopCtrl.create)
   
+router.route('/api/shop/:shopId')
+  .get(shopCtrl.read)
 
-
+router.param('shopId', shopCtrl.shopByID)
 router.param('vendorId', vendorCtrl.vendorByID)
 
 export default router
