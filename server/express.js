@@ -6,7 +6,9 @@ import cors from 'cors'
 import helmet from 'helmet'
 import userRoutes from './routes/user.routes'
 import authRoutes from './routes/auth.routes'
+import vendorRoutes from './routes/vendor.routes'
 import adminRoutes from './routes/admin.routes'
+import shopRoutes from './routes/shop.routes'
 
 const app = express();
 
@@ -19,7 +21,10 @@ app.use(cors());
 
 app.use('/', userRoutes);
 app.use('/', authRoutes);
+app.use('/', vendorRoutes);
 app.use('/', adminRoutes);
+
+app.use('/', shopRoutes);
 
 
 app.get('/', (req, res) => { 

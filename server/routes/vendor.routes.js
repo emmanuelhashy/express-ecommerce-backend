@@ -6,7 +6,7 @@ const router = express.Router();
 
 router.route('/api/vendors')
     .get(vendorCtrl.list)
-    .post(vendorCtrl.createvendor)
+    .post(vendorCtrl.createVendor)
 
 router.route('/api/vendors/:vendorId')
     .get(authCtrl.requireSignin, vendorCtrl.read)

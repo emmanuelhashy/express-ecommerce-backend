@@ -61,25 +61,9 @@ const hasAuthorization = (req, res, next) => {
     next()
 }
 
-const isAdmin = (req, res, next) => {
-    const admin = req.profile && req.auth && req.profile.role === "admin";
-    if(!(admin)) {
-        return res.status('403').json({
-            error: "User is not an admin"
-        })
-    };
-    next();
-}
 
-const isVendor = (req, res, next) => {
-    const admin = req.profile && req.auth && req.profile.role === "vendor";
-    if(!(admin)) {
-        return res.status('403').json({
-            error: "User is not a vendor"
-        })
-    };
-    next();
-}
+
+
 
 const signout = (req, res) => {
     res.clearCookie("t")
@@ -93,6 +77,4 @@ export default {
     signout,
     requireSignin,
     hasAuthorization,
-    isVendor,
-    isAdmin
 }

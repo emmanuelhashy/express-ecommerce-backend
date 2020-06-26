@@ -8,12 +8,12 @@ import create from './utils.controller'
 
 
 const createVendor = async(req, res) => {
-    const role = 'user'
+    const role = 'vendor'
     return create(req, res, role)
 }
 
 const signinVendor = (req, res) => {
-    const role = 'user'
+    const role = 'vendor'
     return authCtrl.signin(req, res, role)
 }
 
@@ -82,6 +82,15 @@ const remove = async (req, res) => {
     }
 }
 
+const isVendor = (req, res, next) => {
+    const admin = req.profile && req.auth && req.profile.role === "vendor";
+    if(!(admin)) {
+        return res.status('403').json({
+            error: "User is not a vendor"
+        })
+    };
+    next();
+}
 
 // CRUD OPERATION FOR SHOPS
 
@@ -93,5 +102,7 @@ export default {
     update,
     remove,
     vendorByID,
-    signinVendor
+    signinVendor,
+
+    isVendor
 }

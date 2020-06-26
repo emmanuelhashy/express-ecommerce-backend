@@ -70,11 +70,24 @@ const remove = async (req, res) => {
     }
 }
 
+
+const isAdmin = (req, res, next) => {
+    const admin = req.profile && req.auth && req.profile.role === "admin";
+    if(!(admin)) {
+        return res.status('403').json({
+            error: "User is not an admin"
+        })
+    };
+    next();
+}
+
 export default {
     createAdmin,
     signinAdmin,
     adminByID,
     remove,
     update,
-    read
+    read,
+
+    isAdmin
 }
