@@ -120,6 +120,17 @@ const remove = async (req, res) => {
   }  
 }
 
+const listByOwner = async (req, res) => {
+  try {
+    let shops = await Shop.find({owner: req.profile._id}).populate('owner', '_id name')
+    res.json(shops)
+  } catch (err){
+    return res.status(400).json({
+      error: errorHandler.getErrorMessage(err)
+    })
+  }
+}
+
 export default {
   create,
   shopByID,
@@ -127,4 +138,5 @@ export default {
   update,
   remove,
   isOwner,
+  listByOwner
 }

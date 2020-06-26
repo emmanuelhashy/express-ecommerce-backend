@@ -12,7 +12,7 @@ router.route('/api/shop/:shopId')
 // VENDOR CREATE SHOP AND VIEW HIS LIST OF SHOPS
 router.route('/api/shops/by/:vendorId')
   .post(authCtrl.requireSignin, authCtrl.hasAuthorization, vendorCtrl.isVendor, shopCtrl.create)
-  
+  .get(authCtrl.requireSignin, authCtrl.hasAuthorization, vendorCtrl.isVendor, shopCtrl.listByOwner)  
   
 
 
